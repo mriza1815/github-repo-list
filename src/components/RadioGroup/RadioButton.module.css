@@ -1,0 +1,19 @@
+.container {
+    display: flex; 
+    align-items: center;
+    column-gap: 5px;
+}
+
+input {
+    border-color: #D1D5DB; 
+    width: 1rem; 
+    height: 1rem; 
+    color: #DC2626; 
+    background-color: #F3F4F6; 
+}
+
+.input-label {
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 500; 
+}

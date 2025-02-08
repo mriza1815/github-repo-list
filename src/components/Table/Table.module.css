@@ -1,0 +1,38 @@
+.table-container {
+    width: 100%; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    text-align: left; 
+    color: #6B7280; 
+}
+
+.table-container > thead {
+    font-size: 0.75rem;
+    line-height: 1rem; 
+    font-weight: 600; 
+    color: #9CA3AF; 
+    text-transform: uppercase; 
+    background-color: #F9FAFB;  
+}
+
+.table-container thead th {
+    font-weight: 600; 
+    text-align: left; 
+}
+
+.table-container > tbody > tr {
+    border-bottom-width: 1px; 
+    border-color: #E5E7EB; 
+    background-color: #ffffff; 
+}
+
+.table-container > tbody > tr:hover {
+    background-color: #F9FAFB; 
+}
+
+.description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 35vw;
+}
