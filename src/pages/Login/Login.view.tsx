@@ -5,13 +5,16 @@ interface LoginProps {
   onClickSubmit: () => void,
   username: string,
   password: string,
+  isLoading: boolean,
+  error: string | null,
   onChangeUsername: (e: React.ChangeEvent<HTMLInputElement>) => void,
   onChangePassword: (e: React.ChangeEvent<HTMLInputElement>) => void
 
 }
 
-const LoginView = ({ onClickSubmit, username, password, onChangeUsername, onChangePassword }: LoginProps) => {
+const LoginView = ({ username, password, isLoading, error, onClickSubmit, onChangeUsername, onChangePassword }: LoginProps) => {
 
+  console.log("loading states", {isLoading, error})
   return (
     <div className={styles.container}>
         <div className={styles.header}>

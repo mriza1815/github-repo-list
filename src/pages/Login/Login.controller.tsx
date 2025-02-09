@@ -10,7 +10,7 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const onClickSubmit = async() => {
-      setError(null);
+      //setError(null);
       setIsLoading(true);
   
       try {
@@ -70,6 +70,8 @@ function Login() {
 
   return (
     <LoginView
+      isLoading={isLoading}
+      error={error}
       username={username}
       password={password}
       onClickSubmit={onClickSubmit} 
