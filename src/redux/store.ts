@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { tableSlice } from './slices/tableSlice'
+import { tableSlice, TableState } from './slices/tableSlice'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -8,7 +8,7 @@ const persistConfig = {
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig, tableSlice.reducer)
+const persistedReducer = persistReducer<TableState>(persistConfig, tableSlice.reducer)
 
 const store = configureStore({
   reducer: {

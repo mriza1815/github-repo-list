@@ -3,7 +3,7 @@ import { RootState } from '../store'
 import { SortProps } from '../../types'
 
 // Define a type for the slice state
-interface TableState {
+export interface TableState {
     currentPage: number,
     sortBy: SortProps,
     selectedLang: string,
