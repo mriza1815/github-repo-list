@@ -22,3 +22,8 @@
   background-color: #ffa500;
   color: white;
 }
+
+.page-btn:disabled {
+  cursor: not-allowed;
+  color: #d3d3d3;
+}
