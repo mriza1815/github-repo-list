@@ -1,0 +1,9 @@
+.container {
+    padding: 0.75rem; 
+    margin-top: 0.5rem; 
+    border-radius: 0.5rem; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    color: #991B1B; 
+    background-color: #FEF2F2; 
+}

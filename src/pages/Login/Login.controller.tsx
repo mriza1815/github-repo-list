@@ -10,6 +10,11 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const onClickSubmit = async() => {
+      
+      if(username === "" || password === "") {
+        setError('Username or password is empty!');
+        return;
+      }
       //setError(null);
       setIsLoading(true);
   
@@ -31,11 +36,11 @@ function Login() {
           }),
         });
 
-        localStorage.setItem('github_token', "token");
-        navigate('/')
+        // localStorage.setItem('github_token', "token");
+        // navigate('/')
   
         if (!response.ok) {
-          throw new Error('Authentication failed');
+          setError('Authentication failed');
         }
   
         const data = await response.json();
@@ -56,11 +61,11 @@ function Login() {
         // Navigate to main page
         //navigate('/repositories');
       } catch (err) {
-        navigate('/')
+        //navigate('/')
         setError(err instanceof Error ? err.message : 'Login failed');
       } finally {
         setIsLoading(false);
-        navigate('/')
+        //navigate('/')
       }
   }
 
