@@ -37,7 +37,7 @@ function App() {
     onClickPrev: () => dispatch(tableActions.setPage(currentPage - 1)),
     onClickNext: () => dispatch(tableActions.setPage(currentPage + 1)),
     onChangePage: (page: number) => dispatch(tableActions.setPage(page))
-  }), [dispatch]);
+  }), [dispatch, selectedLang, sortBy, searchKeyword, currentPage]);
 
   return (
     <AppView

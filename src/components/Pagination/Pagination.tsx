@@ -41,7 +41,7 @@ const Pagination = ({totalCount, onClickPrev, onClickNext, handleChangePage, cur
             <button data-testid="previous-page" onClick={onClickPrev} disabled={isFirstPage} className={styles.pageBtn} aria-label="Previous page">&lt;</button>
             {renderPageNumbers}
             <button data-testid="next-page" onClick={onClickNext} disabled={isLastPage} className={styles.pageBtn} aria-label="Next page">&gt;</button>
-            <button data-testid="last-page" onClick={() => handleChangePage(totalPages-1)} disabled={isLastPage} className={styles.pageBtn} aria-label="Last page">&gt;&gt;</button>
+            <button data-testid="last-page" onClick={() => handleChangePage(totalPages)} disabled={isLastPage} className={styles.pageBtn} aria-label="Last page">&gt;&gt;</button>
         </div>
     )
 }
