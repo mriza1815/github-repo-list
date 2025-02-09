@@ -14,6 +14,7 @@ const RadioButton = ({value, selectedLang, onSelectedLang, name}: RadioButtonPro
             <input 
                 id="red-radio" 
                 type="radio"
+                data-testid="radio-input"
                 className={styles.radioInput}
                 value={value}
                 checked={selectedLang === value}
