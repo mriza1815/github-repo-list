@@ -30,7 +30,7 @@
     background-color: #F9FAFB; 
 }
 
-.description{
+.long-row{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

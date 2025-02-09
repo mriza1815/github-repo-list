@@ -28,10 +28,10 @@ const DataTable = ({data}: TableProps) => {
                 <tr key={`table-item-${repo.id}`} data-testkey={`table-item-${repo.id}`}>
                   <td className="px-6 py-4">{repo.id}</td>
                   <td className="px-6 py-4">{repo.owner.login}</td>
-                  <td className={`px-6 py-4 ${styles.description}`}>{repo.description}</td>
+                  <td className={`px-6 py-4 ${styles.longRow}`}>{repo.description}</td>
                   <td className="px-6 py-4">{repo.stargazers_count}</td>
                   <td className="px-6 py-4">{repo.forks}</td>
-                  <td className="px-6 py-4">{convertDate(repo.updated_at)}</td>
+                  <td className={`px-6 py-4 ${styles.longRow}`}>{convertDate(repo.updated_at)}</td>
                 </tr>
             ))}
           </tbody>

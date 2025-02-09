@@ -20,5 +20,11 @@
     margin-left: 0.25rem; 
     outline-style: none; 
     background-color: #F9FAFB;
-    width: auto; 
+    width: 90% 
+}
+
+@media screen and (max-width: 640px) {
+    .container {
+      width: 50vw;
+    }
 }
