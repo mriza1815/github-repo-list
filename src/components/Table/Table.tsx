@@ -19,20 +19,20 @@ const DataTable = ({data}: TableProps) => {
               <th scope="col" className="px-6 py-3">Last Updated Time</th>
             </tr>
           </thead>
-          <tbody>
-          {data.length === 0 ? (
-            <tr>
-              <td colSpan={6} className="text-center py-4">No repositories found</td>
-            </tr>
-          ): data?.map((repo: Repo) => (
-              <tr key={`table-item-${repo.id}`}>
-                <td className="px-6 py-4">{repo.id}</td>
-                <td className="px-6 py-4">{repo.owner.login}</td>
-                <td className={`px-6 py-4 ${styles.description}`}>{repo.description}</td>
-                <td className="px-6 py-4">{repo.stargazers_count}</td>
-                <td className="px-6 py-4">{repo.forks}</td>
-                <td className="px-6 py-4">{convertDate(repo.updated_at)}</td>
+          <tbody data-testid="table-body">
+            {data.length === 0 ? (
+              <tr data-testid="empty-table">
+                <td colSpan={6} className="text-center py-4">No repositories found</td>
               </tr>
+            ): data?.map((repo: Repo) => (
+                <tr key={`table-item-${repo.id}`} data-testkey={`table-item-${repo.id}`}>
+                  <td className="px-6 py-4">{repo.id}</td>
+                  <td className="px-6 py-4">{repo.owner.login}</td>
+                  <td className={`px-6 py-4 ${styles.description}`}>{repo.description}</td>
+                  <td className="px-6 py-4">{repo.stargazers_count}</td>
+                  <td className="px-6 py-4">{repo.forks}</td>
+                  <td className="px-6 py-4">{convertDate(repo.updated_at)}</td>
+                </tr>
             ))}
           </tbody>
         </table>
