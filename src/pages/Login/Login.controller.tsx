@@ -37,7 +37,7 @@ function Login() {
   
         const data = await response.json();
         const token = data.token;
-        console.log("data", {data, token})
+        console.log("datas", {data, token})
   
         // Verify token works by creating an Octokit instance
         // const octokit = new Octokit({
