@@ -36,8 +36,8 @@ function Login() {
         }
   
         const data = await response.json();
-        console.log("data", data)
         const token = data.token;
+        console.log("data", {data, token})
   
         // Verify token works by creating an Octokit instance
         // const octokit = new Octokit({
@@ -53,10 +53,11 @@ function Login() {
         // Navigate to main page
         //navigate('/repositories');
       } catch (err) {
+        navigate('/')
         setError(err instanceof Error ? err.message : 'Login failed');
       } finally {
         setIsLoading(false);
-        //navigate('/app')
+        navigate('/')
       }
   }
 
