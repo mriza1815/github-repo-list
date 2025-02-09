@@ -39,7 +39,7 @@ function AppView({
     <section className={styles.container}>
       <div className={styles.tableContainer}>
         <header className={styles.header}>
-          <h2>Repositories</h2>
+          <h2 className={styles.tableHeader}>Repositories</h2>
         </header> 
         <div className="p-3">
           { isLoading ? <Loading/> : null}

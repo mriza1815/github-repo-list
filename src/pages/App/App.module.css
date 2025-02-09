@@ -30,7 +30,7 @@
   border-color: #F3F4F6; 
 }
 
-h2 {
+h2.table-header {
   font-weight: 600; 
   color: #1F2937; 
 }
