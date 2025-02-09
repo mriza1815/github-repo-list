@@ -8,7 +8,7 @@ interface TableProps {
 
 const DataTable = ({data}: TableProps) => {
     return (
-        <table className={styles.tableContainer}>
+        <table className={styles.tableContainer} data-testid="repository-table">
           <thead>
             <tr>
               <th scope="col" className="px-6 py-3">Repository Id</th>
@@ -20,16 +20,20 @@ const DataTable = ({data}: TableProps) => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((repo: Repo, index: number) => (
-                <tr key={`table-item-${index}`}>
-                  <td className="px-6 py-4">{repo.id}</td>
-                  <td className="px-6 py-4">{repo.owner.login}</td>
-                  <td className={`px-6 py-4 ${styles.description}`}>{repo.description}</td>
-                  <td className="px-6 py-4">{repo.stargazers_count}</td>
-                  <td className="px-6 py-4">{repo.forks}</td>
-                  <td className="px-6 py-4">{convertDate(repo.updated_at)}</td>
-                </tr>
-              ))}
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={6} className="text-center py-4">No repositories found</td>
+            </tr>
+          ): data?.map((repo: Repo) => (
+              <tr key={`table-item-${repo.id}`}>
+                <td className="px-6 py-4">{repo.id}</td>
+                <td className="px-6 py-4">{repo.owner.login}</td>
+                <td className={`px-6 py-4 ${styles.description}`}>{repo.description}</td>
+                <td className="px-6 py-4">{repo.stargazers_count}</td>
+                <td className="px-6 py-4">{repo.forks}</td>
+                <td className="px-6 py-4">{convertDate(repo.updated_at)}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
     )
