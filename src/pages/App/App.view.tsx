@@ -7,6 +7,7 @@ interface AppViewProps {
   onClickNext: () => void;
   onClickPrev: () => void;
   selectedLang: string;
+  searchKeyword: string;
   sortBy: string;
   page: number;
   totalCount: number;
@@ -32,7 +33,8 @@ function AppView({
   isLoading,
   sortBy,
   totalCount,
-  page
+  page,
+  searchKeyword
 }: AppViewProps) {
 
   return (
@@ -45,7 +47,7 @@ function AppView({
           { isLoading ? <Loading/> : null}
           <div className={`overflow-x-auto ${isLoading ? styles.tableDisabled : ''}`}>
             <div className={styles.tableHeader}>
-              <SearchInput onChangeSearchKeyword={onChangeSearchKeyword} />
+              <SearchInput searchKeyword={searchKeyword} onChangeSearchKeyword={onChangeSearchKeyword} />
               <div className={styles.tableHeaderRight}>
                 <Dropdown list={sortTypes} sortBy={sortBy} onSelectItem={onChangeSortFilter} />
                 <div className={styles.headerRadioGroup}>

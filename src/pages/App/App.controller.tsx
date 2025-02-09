@@ -79,6 +79,7 @@ function App() {
         sortBy={sortBy}
         totalCount={totalCount}
         page={currentPage}
+        searchKeyword={searchKeyword}
         onChangePage={onChangePage}
     />
   )
