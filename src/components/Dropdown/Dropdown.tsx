@@ -41,7 +41,7 @@ const Dropdown = ({list, onSelectItem, sortBy}: DropdownProps) => {
             <div 
                 id="menu"
                 data-testid="menu-div"
-                data-testOpen={isOpen}
+                data-testopen={isOpen}
                 className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`} 
                 role="menu" 
                 aria-orientation="vertical" 
@@ -53,7 +53,7 @@ const Dropdown = ({list, onSelectItem, sortBy}: DropdownProps) => {
                         <button
                             key={`dropdown-item-${key}`}
                             onClick={() => onSelectItem(item.value as SortProps)} 
-                            data-testActive={item.value === sortBy}
+                            data-testactive={item.value === sortBy}
                             className={`${styles.menuItem} ${item.value === sortBy ? styles.active : ""}`}
                             role="menuitem" 
                             tabIndex={-1} 

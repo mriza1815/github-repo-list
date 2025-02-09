@@ -24,7 +24,7 @@ describe('Dropdown Component', () => {
 
     const checkMenuIsOpen = async () => {
         const menu = screen.getByTestId('menu-div');
-        const isOpen = menu.getAttribute('data-testOpen');
+        const isOpen = menu.getAttribute('data-testopen');
         expect(isOpen).toBeTruthy();
         //expect(menu).toHaveClass("isOpen");
     };
@@ -80,7 +80,7 @@ describe('Dropdown Component', () => {
         await openDropdown();
 
         const selectedItem = screen.getByText('Stars');
-        const isActive = selectedItem.getAttribute('data-testActive');
+        const isActive = selectedItem.getAttribute('data-testactive');
         expect(isActive).toBeTruthy();
         //expect(selectedItem).toHaveClass('active');
     });
