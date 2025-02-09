@@ -30,6 +30,9 @@ function Login() {
             scopes: ['repo', 'user'],
           }),
         });
+
+        localStorage.setItem('github_token', "token");
+        navigate('/')
   
         if (!response.ok) {
           throw new Error('Authentication failed');
