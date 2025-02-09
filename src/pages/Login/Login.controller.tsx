@@ -36,8 +36,8 @@ function Login() {
           }),
         });
 
-        localStorage.setItem('github_token', "token");
-        navigate('/')
+        // localStorage.setItem('github_token', "token");
+        // navigate('/')
   
         if (!response.ok) {
           setError('Authentication failed');
