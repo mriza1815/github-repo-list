@@ -11,7 +11,7 @@ import Login from './pages/Login/Login.controller.tsx'
 import './index.css'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
-import PageNotFound from './pages/PageNotFound.tsx'
+import NotFound from './pages/NotFound/NotFound.tsx'
 
 const queryClient = new QueryClient()
 
@@ -32,7 +32,7 @@ createRoot(document.getElementById('root')!).render(
                     </ProtectedRoute>
                   }
                 />
-                <Route path="*" element={<PageNotFound />}
+                <Route path="*" element={<NotFound />}
                 />
               </Routes>
             </BrowserRouter>
