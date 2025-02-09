@@ -27,6 +27,7 @@ const Dropdown = ({list, onSelectItem, sortBy}: DropdownProps) => {
                     ref={menuRef}
                     onClick={toggleOpen}
                     className={styles.menuButton}
+                    data-testid="menu-button"
                     id="menu-button" 
                     aria-expanded="true" 
                     aria-haspopup="true"
@@ -38,18 +39,21 @@ const Dropdown = ({list, onSelectItem, sortBy}: DropdownProps) => {
                 </button>
             </div>
             <div 
-                id="menu" 
+                id="menu"
+                data-testid="menu-div"
+                data-testOpen={isOpen}
                 className={`${styles.menu} ${isOpen ? styles.isOpen : ""}`} 
                 role="menu" 
                 aria-orientation="vertical" 
                 aria-labelledby="menu-button" 
                 tabIndex={-1}
             >
-                <div className="py-1" role="none">
+                <div className="py-1" role="none" data-testid="menu-item-list">
                     {list.map((item, key) => (
                         <button
                             key={`dropdown-item-${key}`}
                             onClick={() => onSelectItem(item.value as SortProps)} 
+                            data-testActive={item.value === sortBy}
                             className={`${styles.menuItem} ${item.value === sortBy ? styles.active : ""}`}
                             role="menuitem" 
                             tabIndex={-1} 
