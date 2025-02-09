@@ -20,7 +20,7 @@ const LoginView = ({ username, password, isLoading, error, onClickSubmit, onChan
         <div className={styles.header}>
           <img
             alt="Your Company"
-            src="src/assets/logo.svg"
+            src="assets/logo.svg"
             className={styles.logo}
           />
           <h2 className={styles.title}>

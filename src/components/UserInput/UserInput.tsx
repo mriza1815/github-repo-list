@@ -1,5 +1,3 @@
-import styles from "./UserInput.module.css"
-
 interface UserInputProps {
     name: string,
     type: string,
@@ -9,8 +7,6 @@ interface UserInputProps {
 }
 
 const UserInput = ({name, type, autoComplete, value, onChange}: UserInputProps) => {
-    
-    console.log('styles', styles)
     
     return (
         <input
