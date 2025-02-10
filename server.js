@@ -6,8 +6,7 @@ import axios from 'axios';
 // Load environment variables
 
 dotenv.config();
-const app = express();
-const PORT = process.env.SERVER_PORT || 3001;
+export const app = express();
 
 // Middleware
 app.use(express.json());
@@ -44,8 +43,4 @@ app.post('/api/github/callback', async (req, res) => {
 // Health check route
 app.get('/health', (_, res) => {
   res.json({ status: 'ok' });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} body`);
 });
