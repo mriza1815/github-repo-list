@@ -2,12 +2,14 @@ import { useNavigate } from 'react-router';
 import LoginView from './Login.view';
 import { useEffect, useState } from 'react';
 import { GITHUB_AUTH_CONFIG, octokit } from '@/api/config';
+import { useAuth } from '@/context/AuthContext';
 
 function Login() {
   
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null)
+  const { login } = useAuth();
 
   useEffect(() => {
     // Handle OAuth callback
@@ -32,9 +34,9 @@ function Login() {
       const { access_token } = await response.json();
       
       if (access_token) {
-        setIsLoading(false);
-        localStorage.setItem('github_token', access_token);
         octokit.auth = access_token;
+        setIsLoading(false);
+        login(access_token);
         navigate('/');
       }
     } catch (error) {

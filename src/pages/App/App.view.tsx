@@ -13,6 +13,7 @@ interface AppViewProps {
   totalCount: number;
   isLoading: boolean;
   tableData: Repo[];
+  onClickLogout: () => void;
   onChangeSearchKeyword: (e: string) => void;
   onChangePage: (e: number) => void;
   onChangeSortFilter: (e: SortProps) => void;
@@ -27,6 +28,7 @@ function AppView({
   onChangeSortFilter, 
   onSelectedLang,
   onChangePage,
+  onClickLogout,
   sortTypes,
   selectedLang,
   tableData,
@@ -42,6 +44,12 @@ function AppView({
       <div className={styles.tableContainer}>
         <header className={styles.header}>
           <h2 className={styles.tableHeader}>Repositories</h2>
+          <button
+            onClick={onClickLogout}
+            className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5"
+          >
+            Logout
+          </button>
         </header> 
         <div className="p-3">
           { isLoading ? <Loading/> : null}

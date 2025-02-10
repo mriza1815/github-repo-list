@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { tableActions } from '@/redux/actions/tableActions'
 import { useGithubRepos } from '@/hooks/useGithubRepos'
 import { useMemo } from 'react'
+import { useAuth } from '@/context/AuthContext'
 
 type SortType = {
   value: SortProps;
@@ -22,6 +23,7 @@ function App() {
   const searchKeyword = useAppSelector((state) => state.table.searchKeyword)
   const selectedLang = useAppSelector((state) => state.table.selectedLang)
   const dispatch = useAppDispatch()
+  const { logout } = useAuth()
   
   const { repos, totalCount, isWaiting } = useGithubRepos({
     currentPage,
@@ -40,6 +42,10 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [selectedLang, sortBy, searchKeyword, currentPage]);
 
+  const onClickLogout = () => {
+    logout()
+  }
+
   return (
     <AppView
       tableData={repos ?? []}
@@ -50,6 +56,7 @@ function App() {
       totalCount={totalCount}
       page={currentPage}
       searchKeyword={searchKeyword}
+      onClickLogout={onClickLogout}
       {...handlers}
     />
   )
