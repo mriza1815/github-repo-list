@@ -5,10 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "node startServer",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
+    "server": "node server",
+    "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "jest",
