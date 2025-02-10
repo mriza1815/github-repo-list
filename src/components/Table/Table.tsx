@@ -1,12 +1,14 @@
 import { Repo } from "../../types";
 import { convertDate } from "../../utils"
+import ErrorBox from "../ErrorBox/ErrorBox";
 import styles from "./Table.module.css"
 
 interface TableProps {
   data: Repo[];
+  error: string | null;
 }
 
-const DataTable = ({data}: TableProps) => {
+const DataTable = ({data, error}: TableProps) => {
     return (
         <table className={styles.tableContainer} data-testid="repository-table">
           <thead>
@@ -22,7 +24,11 @@ const DataTable = ({data}: TableProps) => {
           <tbody data-testid="table-body">
             {data.length === 0 ? (
               <tr data-testid="empty-table">
-                <td colSpan={6} className="text-center py-4">No repositories found</td>
+                <td colSpan={6} className="text-center py-4">
+                  <span>No repositories found</span>
+                  {error ? <ErrorBox message={error}/> : null}
+                </td>
+                
               </tr>
             ): data?.map((repo: Repo) => (
                 <tr key={`table-item-${repo.id}`} data-testkey={`table-item-${repo.id}`}>

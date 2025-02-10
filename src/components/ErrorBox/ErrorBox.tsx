@@ -10,7 +10,7 @@ const ErrorBox = ({ message }: ErrorBoxProps) => {
     return (
         <div 
             role="alert"
-            className={styles.container}
+            className={styles.errorBoxContainer}
             data-testid="error-message">
             {message}
         </div>

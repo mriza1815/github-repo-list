@@ -42,7 +42,6 @@ function Login() {
     } catch (error) {
       setIsLoading(false);
       setError(`Authentication failed: ${error}`);
-      console.error('Authentication failed:', error);
     }
   };
 

@@ -9,6 +9,7 @@ interface AppViewProps {
   selectedLang: string;
   searchKeyword: string;
   sortBy: string;
+  error: string | null;
   page: number;
   totalCount: number;
   isLoading: boolean;
@@ -36,6 +37,7 @@ function AppView({
   sortBy,
   totalCount,
   page,
+  error,
   searchKeyword
 }: AppViewProps) {
 
@@ -80,7 +82,10 @@ function AppView({
                 </div>
               </div>
             </div>
-            <DataTable data={tableData || []} />
+            <DataTable 
+              data={tableData || []}
+              error={error}
+              />
             <div className="mt-4">
               <Pagination 
                 currentPage={page}

@@ -25,7 +25,7 @@ function App() {
   const dispatch = useAppDispatch()
   const { logout } = useAuth()
   
-  const { repos, totalCount, isWaiting } = useGithubRepos({
+  const { error, repos, totalCount, isWaiting } = useGithubRepos({
     currentPage,
     selectedLang,
     sortBy,
@@ -55,6 +55,7 @@ function App() {
       sortBy={sortBy}
       totalCount={totalCount}
       page={currentPage}
+      error={error ? error.message : null}
       searchKeyword={searchKeyword}
       onClickLogout={onClickLogout}
       {...handlers}
