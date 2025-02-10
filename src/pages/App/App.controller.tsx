@@ -37,6 +37,7 @@ function App() {
     onClickPrev: () => dispatch(tableActions.setPage(currentPage - 1)),
     onClickNext: () => dispatch(tableActions.setPage(currentPage + 1)),
     onChangePage: (page: number) => dispatch(tableActions.setPage(page))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [selectedLang, sortBy, searchKeyword, currentPage]);
 
   return (

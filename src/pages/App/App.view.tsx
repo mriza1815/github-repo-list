@@ -16,7 +16,7 @@ interface AppViewProps {
   onChangeSearchKeyword: (e: string) => void;
   onChangePage: (e: number) => void;
   onChangeSortFilter: (e: SortProps) => void;
-  onSelectedLang: (e: any) => void;
+  onSelectedLang: (e: React.ChangeEvent<HTMLInputElement>) => void;
   sortTypes: { value: SortProps, name: string }[];
 }
 

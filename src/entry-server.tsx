@@ -16,6 +16,7 @@ import './index.css'
 
 const queryClient = new QueryClient()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function render(_url: string) {
   const html = renderToString(
     <StrictMode>

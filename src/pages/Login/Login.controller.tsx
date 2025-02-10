@@ -17,6 +17,7 @@ function Login() {
     if (code) {
       handleGitHubCallback(code);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGitHubCallback = async (code: string) => {
