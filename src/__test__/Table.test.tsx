@@ -28,7 +28,7 @@ describe('DataTable', () => {
   ] as Repo[];
 
   it('renders table headers correctly', () => {
-    render(<DataTable data={mockData} />);
+    render(<DataTable data={mockData} error="" />);
 
     const headers = [
       'Repository Id',
@@ -45,7 +45,7 @@ describe('DataTable', () => {
   });
 
   it('renders repository data correctly', () => {
-    render(<DataTable data={mockData} />);
+    render(<DataTable data={mockData} error="" />);
 
     // Check first row data
     expect(screen.getByText('1234')).toBeInTheDocument();
@@ -65,7 +65,7 @@ describe('DataTable', () => {
   });
 
   it('renders empty table view when no data is provided', () => {
-    render(<DataTable data={[]} />);
+    render(<DataTable data={[]} error="" />);
 
     const headers = [
       'Repository Id',
@@ -87,7 +87,7 @@ describe('DataTable', () => {
   });
 
   it('generates unique keys for each row', () => {
-    render(<DataTable data={mockData} />);
+    render(<DataTable data={mockData} error="" />);
 
     const tbody = document.querySelector('tbody');
     const rows = tbody?.querySelectorAll('tr');
