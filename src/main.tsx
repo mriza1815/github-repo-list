@@ -8,10 +8,10 @@ import store, { persistor } from './redux/store.ts'
 import { PersistGate } from 'redux-persist/integration/react'
 import App from './pages/App/App.controller.tsx';
 import Login from './pages/Login/Login.controller.tsx'
-import './index.css'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
 import NotFound from './pages/NotFound/NotFound.tsx'
+import './index.css'
 
 const queryClient = new QueryClient()
 
