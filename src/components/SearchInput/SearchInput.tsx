@@ -8,11 +8,11 @@ type SearchInputProps = {
 
 const SearchInput = ({searchKeyword, onChangeSearchKeyword}: SearchInputProps) => {
 
-    const [initialValue, setInitialValue] = useState("");
+    const [value, setValue] = useState("");
     const typingTimeoutRef = useRef<NodeJS.Timeout>();
 
     useEffect(() => {
-        setInitialValue(searchKeyword);
+        setValue(searchKeyword);
         return () => {
             if (typingTimeoutRef.current) {
                 clearTimeout(typingTimeoutRef.current);
@@ -22,6 +22,7 @@ const SearchInput = ({searchKeyword, onChangeSearchKeyword}: SearchInputProps) =
     }, [])
     
     const onUserTyping = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
         if (typingTimeoutRef.current) {
             clearTimeout(typingTimeoutRef.current);
         }
@@ -39,7 +40,7 @@ const SearchInput = ({searchKeyword, onChangeSearchKeyword}: SearchInputProps) =
                 d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                 clipRule="evenodd" />
             </svg>
-            <input data-testid="search-input" className={styles.input} defaultValue={initialValue} type="text" name="" id="" placeholder="search..." onChange={onUserTyping}/>
+            <input data-testid="search-input" className={styles.input} value={value} type="text" name="" id="" placeholder="search..." onChange={onUserTyping}/>
         </div>
     )
 }

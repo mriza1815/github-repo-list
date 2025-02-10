@@ -1,4 +1,4 @@
-import { SortProps } from "@/types";
+import { SearchParams, SortProps } from "@/types";
 import { Octokit } from "@octokit/core";
 
 // Move API configuration to a separate file
@@ -16,13 +16,6 @@ export const GITHUB_AUTH_CONFIG = {
   OAUTH_URL: 'https://github.com/login/oauth/authorize',
   SCOPE: '',
 };
-
-export interface SearchParams {
-  searchKeyword: string;
-  selectedLang: string;
-  currentPage: number;
-  sortBy: string;
-}
 
 export const getSearchParams = (params: SearchParams) => ({
   headers: {

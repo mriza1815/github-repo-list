@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react';
-import { octokit, SearchParams } from '../api/config';
+import { octokit } from '../api/config';
 import { getSearchParams } from '../api/config';
-import { Repo } from '@/types';
+import { Repo, SearchParams } from '@/types';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 //Only the first 1000 search results are available - https://docs.github.com/v3/search/
-export const GITHUB_API_RESULT_TOTAL_COUNT = 1000;
+export const MAX_TOTAL_COUNT = 1000;
 
 export const useGithubRepos = (params: SearchParams) => {
   const [totalCount, setTotalCount] = useState(0);
@@ -16,7 +16,7 @@ export const useGithubRepos = (params: SearchParams) => {
       const response = await octokit.request('GET /search/repositories', 
         getSearchParams(params)
       );
-      setTotalCount(GITHUB_API_RESULT_TOTAL_COUNT);
+      setTotalCount(response.data.total_count > MAX_TOTAL_COUNT ? MAX_TOTAL_COUNT : response.data.total_count);
       return response.data.items as Repo[];
     },
     placeholderData: keepPreviousData,
