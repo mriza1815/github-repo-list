@@ -6,8 +6,16 @@ export const API_VERSION = '2022-11-28';
 export const PER_PAGE = 10;
 
 export const octokit = new Octokit({
-  auth: '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'
+  auth: ''
 })
+
+
+export const GITHUB_AUTH_CONFIG = {
+  CLIENT_ID: import.meta.env.VITE_GITHUB_CLIENT_ID,
+  REDIRECT_URI: `${window.location.origin}/login`,
+  OAUTH_URL: 'https://github.com/login/oauth/authorize',
+  SCOPE: '',
+};
 
 export interface SearchParams {
   searchKeyword: string;
