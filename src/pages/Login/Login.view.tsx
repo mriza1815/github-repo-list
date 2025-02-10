@@ -1,19 +1,13 @@
-import UserInput from "../../components/UserInput/UserInput"
 import styles from "./Login.module.css"
 import ErrorBox from "@/components/ErrorBox/ErrorBox"
 
 interface LoginProps {
-  onClickSubmit: () => void,
-  username: string,
-  password: string,
+  onGitHubLogin: () => void
   isLoading: boolean,
-  error: string | null,
-  onChangeUsername: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  onChangePassword: (e: React.ChangeEvent<HTMLInputElement>) => void
-
+  error: string | null
 }
 
-const LoginView = ({ username, password, isLoading, error, onClickSubmit, onChangeUsername, onChangePassword }: LoginProps) => {
+const LoginView = ({ isLoading, error, onGitHubLogin }: LoginProps) => {
 
   const renderLoadingSvg = () => {
     return (
@@ -26,7 +20,7 @@ const LoginView = ({ username, password, isLoading, error, onClickSubmit, onChan
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
-      onClickSubmit();
+      onGitHubLogin();
     }
   };
   
@@ -46,41 +40,8 @@ const LoginView = ({ username, password, isLoading, error, onClickSubmit, onChan
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <div className="space-y-6">
             <div>
-              <label htmlFor="username" className={styles.inputLabel}>
-                Username
-              </label>
-              <div className="mt-2">
-                <UserInput
-                  name="username"
-                  type="username"
-                  value={username}
-                  autoComplete="username"
-                  onChange={onChangeUsername}
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="password" className={styles.inputLabel}>
-                  Password
-                </label>
-              </div>
-              <div className="mt-2">
-                <UserInput
-                  name="password"
-                  type="password"
-                  value={password}
-                  autoComplete="current-password"
-                  onChange={onChangePassword}
-                />
-              </div>
-            </div>
-
-            <div>
               <button
-                disabled={isLoading}
-                onClick={onClickSubmit}
+                onClick={onGitHubLogin}
                 className="flex w-full justify-center rounded-md bg-indigo-600 text-sm px-5 py-2.5 text-center me-2 items-center font-semibold text-white shadow-xs hover:bg-indigo-500"
               >
                 {isLoading && renderLoadingSvg()}

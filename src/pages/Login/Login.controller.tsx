@@ -1,91 +1,67 @@
 import { useNavigate } from 'react-router';
 import LoginView from './Login.view';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { GITHUB_AUTH_CONFIG, octokit } from '@/api/config';
 
 function Login() {
-  let navigate = useNavigate();
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null);
+  
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null)
 
-  const onClickSubmit = async() => {
+  useEffect(() => {
+    // Handle OAuth callback
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      handleGitHubCallback(code);
+    }
+  }, []);
+
+  const handleGitHubCallback = async (code: string) => {
+    try {
+      // Exchange code for access token using your backend
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/github/callback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code })
+      });
+
+      const { access_token } = await response.json();
       
-      if(username === "" || password === "") {
-        setError('Username or password is empty!');
-        return;
-      }
-      //setError(null);
-      setIsLoading(true);
-  
-      try {
-        // Create Basic Auth string
-        const basicAuth = btoa(`${username}:${password}`);
-  
-        // Request to create a new personal access token
-        const response = await fetch('https://api.github.com/authorizations', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Basic ${basicAuth}`,
-            'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            note: 'Repository Explorer App Token',
-            scopes: ['repo', 'user'],
-          }),
-        });
-
-        // localStorage.setItem('github_token', "token");
-        // navigate('/')
-  
-        if (!response.ok) {
-          setError('Authentication failed');
-        }
-  
-        const data = await response.json();
-        const token = data.token;
-        console.log("datas", {data, token})
-  
-        // Verify token works by creating an Octokit instance
-        // const octokit = new Octokit({
-        //   auth: token
-        // });
-  
-        // Test the token with a simple API call
-        //await octokit.users.getAuthenticated();
-  
-        // Store token securely
-        //localStorage.setItem('github_token', token);
-  
-        // Navigate to main page
-        //navigate('/repositories');
-      } catch (err) {
-        //navigate('/')
-        setError(err instanceof Error ? err.message : 'Login failed');
-      } finally {
+      if (access_token) {
         setIsLoading(false);
-        //navigate('/')
+        localStorage.setItem('github_token', access_token);
+        octokit.auth = access_token;
+        navigate('/');
       }
-  }
+    } catch (error) {
+      setIsLoading(false);
+      setError(`Authentication failed: ${error}`);
+      console.error('Authentication failed:', error);
+    }
+  };
 
-  const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value)
-  }
+  const handleGitHubLogin = () => {
+    setIsLoading(true);
+    const { CLIENT_ID, REDIRECT_URI, SCOPE, OAUTH_URL } = GITHUB_AUTH_CONFIG;
+    
+    const params = new URLSearchParams({
+      client_id: CLIENT_ID,
+      redirect_uri: REDIRECT_URI,
+      scope: SCOPE,
+      state: crypto.randomUUID() // Prevent CSRF attacks
+    });
 
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+    window.location.href = `${OAUTH_URL}?${params.toString()}`;
+  };
 
   return (
     <LoginView
       isLoading={isLoading}
       error={error}
-      username={username}
-      password={password}
-      onClickSubmit={onClickSubmit} 
-      onChangeUsername={onChangeUsername} 
-      onChangePassword={onChangePassword} 
+      onGitHubLogin={handleGitHubLogin}  
     />
   )
 }
